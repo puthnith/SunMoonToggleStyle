@@ -2,6 +2,8 @@
 
 A custom SwiftUI `ToggleStyle` for switching between light and dark mode.
 
+![SunMoonToggleStyle](Resources/SunMoon.gif)
+
 ## How-to
 
 1. First, **File** → **Swift Packages** → **Add Package Dependancy...**
@@ -28,3 +30,7 @@ struct ContentView: View {
   }
 }
 ```
+
+## Dribbble
+
+Inspired by [Dribbble - Light / Dark mode toggle switcher](https://dribbble.com/shots/7635203-Light-Dark-mode-toggle-switcher#shot-description)

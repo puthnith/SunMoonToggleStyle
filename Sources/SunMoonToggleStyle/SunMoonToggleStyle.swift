@@ -17,11 +17,16 @@ public struct SunMoonToggleStyle: ToggleStyle {
       configuration.label
       Spacer()
       ZStack {
-        shape(configuration.isOn)
-          .foregroundColor(Color.white)
-          .offset(x: configuration.isOn ? 10 : -10)
-          .frame(width: 23.0, height: 23.0)
-          .shadow(color: Color.black.opacity(0.1), radius: 3, x: configuration.isOn ? -2 : 2, y: 1)
+        ZStack {
+          Circle()
+            .opacity(configuration.isOn ? 0.0 : 1.0)
+          Moon()
+            .opacity(configuration.isOn ? 1.0 : 0.0)
+        }
+        .foregroundColor(Color.white)
+        .offset(x: configuration.isOn ? 10 : -10)
+        .frame(width: 23.0, height: 23.0)
+        .shadow(color: Color.black.opacity(0.1), radius: 3, x: configuration.isOn ? -2 : 2, y: 1)
       }
       .frame(width: 51.0, height: 31.0)
       .background(background(configuration.isOn))
@@ -34,24 +39,20 @@ public struct SunMoonToggleStyle: ToggleStyle {
     }
   }
 
-  private func shape(_ isOn: Bool) -> some View {
-    isOn ? AnyView(Moon()) : AnyView(Circle())
-  }
-
   private func background(_ isOn: Bool) -> some View {
     LinearGradient(
-      gradient: isOn ? lightGradient : darkGradient,
+      gradient: isOn ? darkGradient : lightGradient,
       startPoint: .top,
       endPoint: .bottom
     )
-     .background(isOn ? Color.black : Color.white)
-  }
-
-  private var darkGradient: Gradient {
-    Gradient(colors: [Color.blue.opacity(0.6), Color.blue.opacity(0.4), Color.blue.opacity(0.6)])
+      .background(isOn ? Color.black : Color.white)
   }
 
   private var lightGradient: Gradient {
+    Gradient(colors: [Color.blue.opacity(0.6), Color.blue.opacity(0.4), Color.blue.opacity(0.6)])
+  }
+
+  private var darkGradient: Gradient {
     Gradient(colors: [Color.blue.opacity(0.3), Color.blue.opacity(0.5), Color.blue.opacity(0.3)])
   }
 }
